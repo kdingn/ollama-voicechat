@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: ollama
+    build:
+      context: .
+      dockerfile: dockerfile.ollama
+      args:
+        USE_GPU: ${USE_GPU}
+    ports:
+      - "11434:11434"

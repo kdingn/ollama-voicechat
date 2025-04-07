@@ -1,0 +1,18 @@
+ARG USE_GPU=True
+FROM debian:bullseye-slim
+RUN touch gpu.txt && echo "USE_GPU=${USE_GPU}" > gpu.txt
+
+# FROM ${USE_GPU:+nvidia/cuda:12.8.1-runtime-ubuntu24.04}
+# FROM ${USE_GPU:-ubuntu:24.04}
+
+# ARG MODEL_NAME=gemma3
+
+# RUN apt update && \
+#     apt install -y -y --no-install-recommends --no-install-suggests \
+#     curl \
+#     ca-certificates
+
+# RUN curl -fsSL https://ollama.com/install.sh | sh
+# RUN nohup ollama serve & sleep 5 && ollama pull ${MODEL_NAME}
+# ENV OLLAMA_HOST=0.0.0.0
+# CMD ["ollama", "run", "${MODEL_NAME}"]
