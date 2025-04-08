@@ -5,8 +5,14 @@ services:
     container_name: ollama
     build:
       context: .
-      dockerfile: dockerfile.ollama
-      args:
-        USE_GPU: ${USE_GPU}
+      dockerfile: dockerfile.ollama.cpu
+      # dockerfile: dockerfile.ollama.gpu
     ports:
       - "11434:11434"
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]

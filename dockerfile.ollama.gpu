@@ -1,0 +1,13 @@
+FROM nvidia/cuda:11.8.0-runtime-ubuntu22.04
+ARG MODEL_NAME=gemma3
+
+RUN apt update && \
+    apt install -y -y --no-install-recommends --no-install-suggests \
+    curl \
+    ca-certificates
+
+RUN curl -fsSL https://ollama.com/install.sh | sh
+RUN nohup ollama serve & sleep 5 && ollama pull ${MODEL_NAME}
+ENV OLLAMA_HOST=0.0.0.0
+ENV OLLAMA_NUM_GPU=999
+CMD ["ollama", "serve"]
