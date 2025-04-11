@@ -26,8 +26,8 @@ export function Theme({ children }: { children: React.ReactNode }) {
       ...(isDark
         ? {
             background: {
-              default: mirage.editor.bg.hex(),
-              paper: mirage.ui.bg.hex(),
+              default: mirage.ui.bg.hex(),
+              paper: mirage.editor.bg.hex(),
             },
             text: {
               primary: mirage.editor.fg.hex(),
@@ -36,8 +36,8 @@ export function Theme({ children }: { children: React.ReactNode }) {
           }
         : {
             background: {
-              default: light.editor.bg.hex(),
-              paper: light.ui.bg.hex(),
+              default: light.ui.bg.hex(),
+              paper: light.editor.bg.hex(),
             },
             text: {
               primary: light.editor.fg.hex(),
