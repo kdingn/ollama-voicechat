@@ -1,16 +1,29 @@
 "use client";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import {
+  ThemeProvider as MuiThemeProvider,
+  createTheme,
+} from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { light, mirage } from "ayu";
 
 export function Theme({ children }: { children: React.ReactNode }) {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || !resolvedTheme) return null;
+
+  const isDark = resolvedTheme === "dark";
 
   const theme = createTheme({
     palette: {
-      mode: prefersDarkMode ? "dark" : "light",
-      ...(prefersDarkMode
+      mode: isDark ? "dark" : "light",
+      ...(isDark
         ? {
             background: {
               default: mirage.editor.bg.hex(),
@@ -35,9 +48,9 @@ export function Theme({ children }: { children: React.ReactNode }) {
   });
 
   return (
-    <ThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
       <CssBaseline />
       {children}
-    </ThemeProvider>
+    </MuiThemeProvider>
   );
 }

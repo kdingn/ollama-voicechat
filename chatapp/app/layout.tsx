@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import { Theme } from "./theme";
 
 const notoSansJP = Noto_Sans_JP({
@@ -23,11 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" suppressHydrationWarning>
       <body
         className={`${notoSansJP.variable}, ${notoSerifJP.variable}, Arial, sans-serif`}
       >
-        <Theme>{children}</Theme>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Theme>{children}</Theme>
+        </ThemeProvider>
       </body>
     </html>
   );
