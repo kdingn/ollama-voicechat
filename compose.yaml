@@ -1,18 +1,28 @@
 version: "3.8"
 
 services:
-  api:
+  llm-api:
     container_name: ollama
     build:
       context: .
       dockerfile: dockerfile.ollama.cpu
-      # dockerfile: dockerfile.ollama.gpu
     ports:
       - "11434:11434"
-    # deploy:
-    #   resources:
-    #     reservations:
-    #       devices:
-    #         - driver: nvidia
-    #           count: 1
-    #           capabilities: [gpu]
+
+  speech-api:
+    container_name: aivisspeech
+    image: ghcr.io/aivis-project/aivisspeech-engine:cpu-latest
+    entrypoint: ["/entrypoint.sh"]
+    command:
+      [
+        "gosu",
+        "user",
+        "/opt/python/bin/poetry",
+        "run",
+        "python",
+        "./run.py",
+        "--host",
+        "0.0.0.0",
+      ]
+    ports:
+      - "10101:10101"
