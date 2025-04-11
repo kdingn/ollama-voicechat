@@ -6,7 +6,7 @@ import {
 import CssBaseline from "@mui/material/CssBaseline";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { light, mirage } from "ayu";
+import { light, mirage, dark } from "ayu";
 
 export function Theme({ children }: { children: React.ReactNode }) {
   const { resolvedTheme } = useTheme();
@@ -33,6 +33,14 @@ export function Theme({ children }: { children: React.ReactNode }) {
               primary: mirage.editor.fg.hex(),
               secondary: mirage.common.accent.hex(),
             },
+            // background: {
+            //   default: dark.editor.bg.hex(),
+            //   paper: dark.editor.bg.hex(),
+            // },
+            // text: {
+            //   primary: dark.editor.fg.hex(),
+            //   secondary: dark.common.accent.hex(),
+            // },
           }
         : {
             background: {
