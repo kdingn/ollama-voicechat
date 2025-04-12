@@ -1,8 +1,8 @@
-.inputform {
+.chat-input-form {
   display: flex;
   justify-content: center;
   position: fixed;
   bottom: 0;
   width: 100%;
-  padding: 10px 0;
+  padding: 10px 8px;
 }
