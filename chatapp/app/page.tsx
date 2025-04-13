@@ -5,7 +5,7 @@ import InputForm from "./components/InputForm";
 function page() {
   return (
     <div>
-      <div className="chat-input-form">
+      <div className="chat-inputform">
         <InputForm />
       </div>
     </div>
