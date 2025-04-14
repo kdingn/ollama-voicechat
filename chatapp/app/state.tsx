@@ -1,5 +1,10 @@
 import { create } from "zustand";
 
+interface PromptState {
+  prompt: string;
+  setPrompt: (newPrompt: string) => void;
+}
+
 interface Message {
   role: string;
   message: string;
@@ -10,11 +15,8 @@ interface MessagesState {
   addMessage: (role: string, message: string) => void;
 }
 
-export const useMessages = create<MessagesState>((set) => ({
-  messages: [
-    {
-      role: "system",
-      message: `あなたは優秀なAIです。次のことを守って回答してください。
+export const usePrompt = create<PromptState>((set) => ({
+  prompt: `あなたは優秀なAIです。次のことを守って回答してください。
 * 質問者はIT技術者
 * 丁寧な言葉遣い
 * 丁寧過ぎない言葉遣い
@@ -31,7 +33,15 @@ export const useMessages = create<MessagesState>((set) => ({
 * 箇条書きしない
 * 特殊文字を使用しない
 * 扱えない話題はない`,
-    },
+  setPrompt: (newPrompt: string) => {
+    set(() => ({
+      prompt: newPrompt,
+    }));
+  },
+}));
+
+export const useMessages = create<MessagesState>((set) => ({
+  messages: [
     { role: "user", message: "こんにちは、調子はどうですか？" },
     { role: "assistant", message: "こんにちは！調子は良いです。" },
     { role: "user", message: "最近、AIについて学んでいます。" },
