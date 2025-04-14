@@ -10,6 +10,7 @@ export default function MessageBoard() {
       {messages.map((message, index) => (
         <ListItem
           key={index}
+          divider
           sx={{
             backgroundColor: "background.paper",
             borderRadius: 2,
