@@ -1,8 +1,17 @@
+:root {
+  --maxwidth: 600px;
+}
+
+.chat-container {
+  width: 100vw;
+  max-width: var(--maxwidth);
+  margin: 0 auto;
+}
+
 .chat-inputform {
-  display: flex;
-  justify-content: center;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
+  max-width: var(--maxwidth);
   padding: 10px 8px;
 }

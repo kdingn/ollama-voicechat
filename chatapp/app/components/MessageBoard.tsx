@@ -1,15 +1,25 @@
 import React from "react";
 import { useMessages } from "@/app/state";
+import { List, ListItem, ListItemText } from "@mui/material";
 
 export default function MessageBoard() {
   const { messages } = useMessages();
+
   return (
-    <div>
+    <List sx={{ paddingTop: 1, paddingX: 1 }}>
       {messages.map((message, index) => (
-        <div key={index}>
-          {message.role}: {message.message}
-        </div>
+        <ListItem
+          key={index}
+          sx={{
+            backgroundColor: "background.paper",
+            borderRadius: 2,
+            marginBottom: 1,
+            textAlign: message.role === "user" ? "right" : "left",
+          }}
+        >
+          <ListItemText primary={message.message} />
+        </ListItem>
       ))}
-    </div>
+    </List>
   );
 }

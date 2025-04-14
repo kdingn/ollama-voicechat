@@ -5,13 +5,7 @@ import SendIcon from "@mui/icons-material/Send";
 export default function CustomizedInputForm() {
   const placeholder = "Input message here...";
   return (
-    <Paper
-      sx={{
-        display: "flex",
-        maxWidth: "600px",
-        width: "100vw",
-      }}
-    >
+    <Paper sx={{ display: "flex" }}>
       <InputBase
         multiline
         fullWidth

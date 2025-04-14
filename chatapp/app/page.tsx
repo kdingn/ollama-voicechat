@@ -5,7 +5,7 @@ import MessageBoard from "./components/MessageBoard";
 
 function page() {
   return (
-    <div>
+    <div className="chat-container">
       <MessageBoard />
       <div className="chat-inputform">
         <InputForm />
