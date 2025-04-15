@@ -8,6 +8,7 @@ export default function CustomizedInputForm() {
   const placeholder = "Input message here...";
   const { addMessage } = useMessages();
   const [input, setInput] = useState<string>("");
+  const [isComposing, setIsComposing] = useState(false);
 
   const handleSend = () => {
     if (input.trim() === "") return;
@@ -24,8 +25,10 @@ export default function CustomizedInputForm() {
         value={input}
         sx={{ fontSize: "1.1rem", padding: "6px 0px 6px 10px" }}
         onChange={(e) => setInput(e.target.value)}
+        onCompositionStart={() => setIsComposing(true)}
+        onCompositionEnd={() => setIsComposing(false)}
         onKeyDown={(e) => {
-          if (e.key === "Enter" && !e.shiftKey) {
+          if (e.key === "Enter" && !e.shiftKey && !isComposing) {
             e.preventDefault();
             handleSend();
           }
