@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import { Theme } from "./theme";
 
 const notoSansJP = Noto_Sans_JP({

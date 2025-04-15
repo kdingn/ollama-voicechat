@@ -1,4 +1,3 @@
-import React from "react";
 import { useMessages } from "@/app/state";
 import { List, ListItem, ListItemText } from "@mui/material";
 

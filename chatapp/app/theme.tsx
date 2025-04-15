@@ -1,12 +1,12 @@
 "use client";
+import CssBaseline from "@mui/material/CssBaseline";
 import {
   ThemeProvider as MuiThemeProvider,
   createTheme,
 } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
+import { light, mirage } from "ayu";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { light, mirage } from "ayu";
 
 export function Theme({ children }: { children: React.ReactNode }) {
   const { resolvedTheme } = useTheme();

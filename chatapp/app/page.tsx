@@ -1,7 +1,7 @@
 "use client";
-import "./global.css";
 import InputForm from "./components/InputForm";
 import MessageBoard from "./components/MessageBoard";
+import "./global.css";
 
 function page() {
   return (
