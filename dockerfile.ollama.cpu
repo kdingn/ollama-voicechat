@@ -9,4 +9,5 @@ RUN apt update && \
 RUN curl -fsSL https://ollama.com/install.sh | sh
 RUN nohup ollama serve & sleep 5 && ollama pull ${MODEL_NAME}
 ENV OLLAMA_HOST=0.0.0.0
+ENV OLLAMA_ORIGINS=*
 CMD ["ollama", "serve"]
