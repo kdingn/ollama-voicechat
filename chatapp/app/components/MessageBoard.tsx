@@ -25,7 +25,7 @@ export default function MessageBoard() {
             }}
           >
             <ListItemText
-              primary={message.message}
+              primary={message.content}
               sx={{ whiteSpace: "pre-line" }}
             />
           </Box>

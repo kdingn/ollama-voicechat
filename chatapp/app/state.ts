@@ -5,21 +5,22 @@ interface PromptState {
   setPrompt: (newPrompt: string) => void;
 }
 
-interface Message {
+export interface Message {
   role: string;
-  message: string;
+  content: string;
 }
 
 interface MessagesState {
   messages: Message[];
-  addMessage: (role: string, message: string) => void;
+  addMessage: (role: string, content: string) => void;
+  updateMessage: (index: number, newContent: string) => void;
 }
 
 export const usePrompt = create<PromptState>((set) => ({
   prompt: `あなたは優秀なAIです。次のことを守って回答してください。
+* 質問者は日本人
 * 質問者はIT技術者
 * 丁寧な言葉遣い
-* 丁寧過ぎない言葉遣い
 * 前向きな言葉
 * わかる、察する、把握した旨は含めない
 * いいですね、など中身のない同意から始めない
@@ -41,15 +42,17 @@ export const usePrompt = create<PromptState>((set) => ({
 }));
 
 export const useMessages = create<MessagesState>((set) => ({
-  messages: [
-    { role: "user", message: "こんにちは、調子はどうですか？" },
-    { role: "assistant", message: "こんにちは！調子は良いです。" },
-    { role: "user", message: "最近、AIについて学んでいます。" },
-    { role: "assistant", message: "それは素晴らしいですね！" },
-  ],
-  addMessage: (role: string, message: string) => {
+  messages: [],
+  addMessage: (role: string, content: string) => {
     set((state) => ({
-      messages: [...state.messages, { role: role, message: message }],
+      messages: [...state.messages, { role: role, content: content }],
+    }));
+  },
+  updateMessage: (index: number, newContent: string) => {
+    set((state) => ({
+      messages: state.messages.map((msg, i) =>
+        i === index ? { ...msg, content: newContent } : msg
+      ),
     }));
   },
 }));

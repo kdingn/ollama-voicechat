@@ -1,3 +1,4 @@
+import useOllamaChat from "@/app/hooks/useOllamaChat";
 import { useMessages } from "@/app/state";
 import SendIcon from "@mui/icons-material/Send";
 import { IconButton, InputBase } from "@mui/material";
@@ -6,14 +7,18 @@ import { useState } from "react";
 
 export default function CustomizedInputForm() {
   const placeholder = "Input message here...";
-  const { addMessage } = useMessages();
+  const { messages, addMessage } = useMessages();
+  const { streamOllamaReply } = useOllamaChat();
   const [input, setInput] = useState<string>("");
   const [isComposing, setIsComposing] = useState(false);
 
   const handleSend = () => {
     if (input.trim() === "") return;
-    addMessage("user", input);
+    const message = input.trim();
+    const nextMessages = [...messages, { role: "user", content: message }];
+    addMessage("user", message);
     setInput("");
+    streamOllamaReply(nextMessages);
   };
 
   return (
