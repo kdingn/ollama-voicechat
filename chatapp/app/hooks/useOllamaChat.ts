@@ -2,7 +2,7 @@ import { Message, useMessages, usePrompt } from "@/app/state";
 
 export default function useOllamaChat() {
   const { prompt } = usePrompt();
-  const { messages, addMessage, updateMessage } = useMessages();
+  const { addMessage, updateMessage } = useMessages();
 
   const model = process.env.NEXT_PUBLIC_OLLAMA_MODEL;
   const endpoint = process.env.NEXT_PUBLIC_OLLAMA_ENDPOINT;
