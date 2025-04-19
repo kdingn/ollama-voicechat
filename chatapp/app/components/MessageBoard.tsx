@@ -5,7 +5,7 @@ export default function MessageBoard() {
   const { messages } = useMessages();
 
   return (
-    <List sx={{ padding: 1, paddingBottom: 6 }}>
+    <List sx={{ paddingBottom: 8 }}>
       {messages.map((message, index) => (
         <ListItem
           key={index}
@@ -18,10 +18,11 @@ export default function MessageBoard() {
             sx={{
               backgroundColor: "background.paper",
               borderRadius: 2,
-              paddingX: 2,
+              paddingX: 1.8,
               paddingY: 0.5,
               maxWidth: "80%",
               textAlign: "left",
+              outline: "1px solid",
             }}
           >
             <ListItemText
